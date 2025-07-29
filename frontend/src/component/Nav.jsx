@@ -1,6 +1,14 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { IoSearchOutline } from "react-icons/io5";
-import { FaRegUser, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaRegUser,
+  FaShoppingBag,
+  FaBars,
+  FaTimes,
+  FaHome,
+  FaThList,
+  FaPhone,
+} from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { userDataContext } from "../context/UserContext";
@@ -18,8 +26,6 @@ function Nav() {
 
   const location = useLocation();
 
-  const hideNavRoutes = ["/login", "/register"];
-  if (hideNavRoutes.includes(location.pathname)) return null;
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -47,6 +53,7 @@ function Nav() {
 
   return (
     <nav className="w-full fixed top-0 left-0 z-50 bg-white shadow">
+      <div className="relative"> 
       {/* Top Navbar */}
       <div className="w-full px-4 md:px-6 py-3 flex justify-between items-center border-b border-gray-200">
         {/* Logo */}
@@ -168,7 +175,6 @@ function Nav() {
           </button>
         </div>
       </div>
-
       {/* Desktop Navigation */}
       <div className="w-full bg-black text-white text-sm px-6 py-2 justify-center gap-4 tracking-wide hidden md:flex">
         <button
@@ -199,6 +205,7 @@ function Nav() {
           CONTACT
         </button>
       </div>
+
 
       {/* Mobile Menu */}
       {showMobileMenu && (
@@ -260,19 +267,27 @@ function Nav() {
       )}
 
       {/* Mobile Bottom Bar */}
-      <div className="fixed bottom-0 left-0 w-full bg-black text-white flex justify-around items-center py-2 text-xs md:hidden z-40">
-        <button onClick={() => navigate("/")}>Home</button>
-        <button onClick={() => navigate("/collection")}>Collections</button>
-        <button onClick={() => navigate("/contact")}>Contact</button>
+
+      <div className="fixed bottom-0 left-0 w-full bg-black text-white flex justify-around items-center py-3 text-xs md:hidden z-40">
+        <button onClick={() => navigate("/")}>
+          <FaHome size={23} />
+        </button>
+        <button onClick={() => navigate("/collection")}>
+          <FaThList size={20} />
+        </button>
+        <button onClick={() => navigate("/contact")}>
+          <FaPhone size={20} />
+        </button>
         <button onClick={() => navigate("/cart")} className="relative">
-          Cart
+          <FaShoppingBag size={20} />
           {getCartCount() > 0 && (
-            <span className="absolute -top-2 -right-3 bg-white text-black text-xs px-[5px] rounded-full">
+            <span className="absolute -top-2 -right-2 bg-white text-black text-xs px-[6px] rounded-full">
               {getCartCount()}
             </span>
           )}
         </button>
       </div>
+        </div>
     </nav>
   );
 }
