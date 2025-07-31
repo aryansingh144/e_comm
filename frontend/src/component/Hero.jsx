@@ -1,22 +1,33 @@
-import React from 'react'
+import React from 'react';
 import { FaCircle } from "react-icons/fa";
 
-function Hero({heroData,heroCount,setHeroCount}) {
+function Hero({ heroData, heroCount, setHeroCount }) {
+  const words = heroData.text1.split(" ");
+  const mid = Math.ceil(words.length / 2);
+  const firstHalf = words.slice(0, mid).join(" ");
+  const secondHalf = words.slice(mid).join(" ");
+
   return (
-    <div className='w-[40%] h-[100%]  relative' >
-        <div className='absolute  text-[#88d9ee]  text-[20px] md:text-[40px] lg:text-[55px] md:left-[10%] md:top-[90px] lg:top-[130px] left-[10%] top-[10px]'>
-            <p>{heroData.text1}</p>
-            <p>{heroData.text2}</p>
-        </div>
-        <div className='absolute md:top-[400px]   lg:top-[500px] top-[160px] left-[10%] flex items-center justify-center gap-[10px] '>
-        <FaCircle className={`w-[14px] ${heroCount=== 0 ?"fill-orange-400":"fill-white"}`} onClick={()=>setHeroCount(0)}/>
-        <FaCircle className={`w-[14px] ${heroCount=== 1 ?"fill-orange-400":"fill-white"}`} onClick={()=>setHeroCount(1)}/>
-        <FaCircle className={`w-[14px] ${heroCount=== 2 ?"fill-orange-400":"fill-white"}`} onClick={()=>setHeroCount(2)}/>
-        <FaCircle className={`w-[14px] ${heroCount=== 3 ?"fill-orange-400":"fill-white"}`} onClick={()=>setHeroCount(3)}/>
-        </div>
-      
+    <div className='w-full md:w-[40%] h-full relative pt-[5px]'>
+      <div className='absolute text-white left-[5%] top-[10px] md:top-[70px] lg:top-[130px] text-[20px] md:text-[40px] lg:text-[55px] w-[80%] leading-snug'>
+        <p>
+          <span className='block sm:inline'>{firstHalf}</span>
+          <span className='block sm:inline'> {secondHalf}</span>
+        </p>
+        <p className='hidden lg:block'>{heroData.text2}</p>
+      </div>
+
+      <div className='absolute top-[160px] sm:top-[40vh] md:top-[46vh] lg:top-[80vh] left-[10%] flex items-center justify-center gap-[10px] text-white text-[10px] md:text-[15px] lg:text-[25px]'>
+        {[0, 1, 2, 3].map(i => (
+          <FaCircle
+            key={i}
+            className={`w-[14px] cursor-pointer ${heroCount === i ? "fill-black" : "fill-white"}`}
+            onClick={() => setHeroCount(i)}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

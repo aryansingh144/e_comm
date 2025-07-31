@@ -8,12 +8,25 @@ import Footer from '../component/Footer'
 
 
 function Home() {
-  let heroData=[
-    {text1:"30% OFF Limited Offer",text2:"Style that"},
-    {text1:"Discover the Best of Bold Fashion",text2:"Limited Time Only!"},
-    {text1:"Explore Our Best Collection ",text2:"Shop Now!"},
-    {text1:"Choose your Perfect Fasion Fit",text2:"Now on Sale!"}
-  ]
+  let heroData = [
+  {
+    text1: "50% OFF – Limited Time Only!",
+    text2: "Don't miss out on exclusive deals!",
+  },
+  {
+    text1: "Unleash Your Bold Side",
+    text2: "Where Streetwear Meets Elegance",
+  },
+  {
+    text1: "Explore the Hottest Collections",
+    text2: "Shop the Looks Everyone's Talking About",
+  },
+  {
+    text1: "Find Your Perfect Fit",
+    text2: "Trendy. Timeless. Totally You.",
+  }
+];
+
 
   let [heroCount,setHeroCount] = useState(0)
 
@@ -25,25 +38,22 @@ function Home() {
   },[])
   
   return (
-    <div className='overflow-x-hidden relative top-[70px]'>
-    <div className=' w-[100vw] lg:h-[100vh] md:h-[50vh] sm:h-[30vh]   bg-gradient-to-l from-[#141414] to-[#0c2025] '>
-
-      <Backgound heroCount={heroCount}/>
+  <div className="overflow-x-hidden pt-[70px]">
+    <div className="w-full lg:h-[100vh] md:h-[50vh] sm:h-[30vh] bg-gradient-to-l from-[#141414] to-[#0c2025]">
+      <Backgound heroCount={heroCount} />
       <Hero
-      heroCount={heroCount}
-      setHeroCount={setHeroCount}
-      heroData={heroData[heroCount]}
+        heroCount={heroCount}
+        setHeroCount={setHeroCount}
+        heroData={heroData[heroCount]}
       />
-
-
-     
     </div>
-    <Product/>
-    <OurPolicy/>
-    <NewLetterBox/>
-    <Footer/>
-    </div>
-  )
+    <Product />
+    <OurPolicy />
+    <NewLetterBox />
+    <Footer />
+  </div>
+);
+
 }
 
 export default Home

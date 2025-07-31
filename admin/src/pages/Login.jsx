@@ -22,7 +22,7 @@ function Login() {
             e.preventDefault()
             try {
               const result = await axios.post(serverUrl + '/api/auth/adminlogin',{email , password} , {withCredentials:true})
-              console.log(result.data)
+              // console.log(result.data)
               toast.success("AdminLogin Successfully")
               getAdmin()
               navigate("/")

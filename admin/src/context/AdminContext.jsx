@@ -13,10 +13,14 @@ function AdminContext({children}) {
            let result = await axios.get(serverUrl + "/api/user/getadmin",{withCredentials:true})
 
       setAdminData(result.data)
-      console.log(result.data)
+      // console.log(result.data)
+
       } catch (error) {
-        setAdminData(null)
-        console.log(error)
+        if (error.response?.status === 400 || error.response?.status === 401) {
+      setAdminData(null);
+    } else {
+      console.error("getAdmin error:", error);
+    }
       }
     }
 

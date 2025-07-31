@@ -14,16 +14,11 @@ let port = process.env.PORT || 6000
 
 let app = express()
 
-app.get("/test", (req, res) => {
-  console.log("🔥 Test route hit");
-  res.send("It works");
-});
-
 
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
- origin:["http://localhost:5173"],
+ origin:["http://localhost:5173","http://localhost:5174"],
  credentials:true
 }))
 
