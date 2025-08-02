@@ -8,7 +8,7 @@ const adminAuth = async (req,res,next) => {
         return res.status(400).json({message:"Not Authorized Login Again"})
     }
     
-    let verifyToken =  jwt.verify(token,process.env.JWT_SECRET)
+    let verifyToken =  jwt.verify(token , process.env.JWT_SECRET)
 
     if(!verifyToken){
          return res.status(400).json({message:"Not Authorized Login Again, Invalid token"})
