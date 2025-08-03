@@ -8,10 +8,10 @@ import Loading from '../component/Loading';
 
 function ProductDetail() {
     let {productId} = useParams()
-    let {products,currency ,addtoCart ,loading} = useContext(shopDataContext)
+    let {products,currency ,addtoCart,loading,error} = useContext(shopDataContext)
     let [productData,setProductData] = useState(false)
-
-    const [image, setImage] = useState('')
+    
+  const [image, setImage] = useState('')
   const [image1, setImage1] = useState('')
   const [image2, setImage2] = useState('')
   const [image3, setImage3] = useState('')
@@ -72,22 +72,23 @@ function ProductDetail() {
                     <FaStar className='text-[20px] fill-[#FFD700]' />
                     <FaStar className='text-[20px] fill-[#FFD700]' />
                     <FaStarHalfAlt className='text-[20px] fill-[#FFD700]' />
-                    <p className='text-[18px] font-semibold pl-[5px] text-[white]'>(124)</p>
+                    <p className='text-[18px] font-semibold pl-[5px] text-[white]'>(458)</p>
                 </div>
                 <p className='text-[30px] font-semibold pl-[5px] text-[white]'>{currency} {productData.price}</p>
 
                 <p className=' w-[80%] md:w-[60%] text-[20px] font-semibold pl-[5px] text-[white]'>{productData.description} and Stylish, breathable cotton shirt with a modern slim fit. Easy to wash, super comfortable, and designed for effortless style.</p>
                 <div className='flex flex-col gap-[10px] my-[10px] '>
                     <p className='text-[25px] font-semibold pl-[5px] text-[white]'>Select Size</p>
-          <div className='flex gap-2'>
+          <div className='flex gap-1'>
             {
               productData.sizes.map((item, index) => (
                 <button key={index} className={`border py-2 px-4 bg-slate-300 rounded-md 
-                  ${item === size ? 'bg-black text-[#2f97f1] text-[20px]' : ''}`} onClick={() => setSize(item)}  >{item}</button>
+                  ${item === size ? 'bg-black text-[#2f97f1] text-[20px]' : ''}`} onClick={() => setSize(size===item?'':item)}  >{item}</button>
               ))
             }
           </div>
            <button className='text-[16px] active:bg-slate-500 cursor-pointer bg-[#495b61c9] py-[10px] px-[20px] rounded-2xl mt-[10px] border-[1px] border-[#80808049] text-white shadow-md shadow-black' onClick={()=>addtoCart(productData._id , size)} >{loading? <Loading/> : "Add to Cart"}</button>
+           {!size && <span className='text-red-500'>{error}</span>}
                 </div>
             <div className='w-[90%] h-[1px] bg-slate-700'></div>
             <div className='w-[80%] text-[16px] text-white '>

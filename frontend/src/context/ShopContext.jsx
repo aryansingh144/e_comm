@@ -14,6 +14,7 @@ export const ShopContextProvider = ({ children }) => {
   const { serverUrl } = useContext(authDataContext);
   const [cartItem, setCartItem] = useState({});
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); 
   const currency = '₹';
   const delivery_fee = 40;
 
@@ -28,10 +29,10 @@ export const ShopContextProvider = ({ children }) => {
 
   const addtoCart = async (itemId, size) => {
     if (!size) {
-      console.log("Select Product Size");
+      setError("Select Product Size");
       return;
     }
-
+    setError("");
     let cartData = structuredClone(cartItem);
 
     if (cartData[itemId]) {
@@ -128,6 +129,7 @@ export const ShopContextProvider = ({ children }) => {
     updateQuantity,
     getCartAmount,
     loading,
+    error,
   };
 
   return (

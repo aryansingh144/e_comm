@@ -7,6 +7,7 @@ import AuthContext from './context/authContext.jsx'
 import UserContext from './context/UserContext.jsx'
 // import ShopContext from './context/ShopContext.jsx'
 import { ShopContextProvider } from './context/ShopContext.jsx'
+import ScrollToTop from './component/ScrollToTop.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -14,7 +15,8 @@ createRoot(document.getElementById('root')).render(
     <AuthContext>
       <UserContext>
         <ShopContextProvider>
-          <App />
+          <ScrollToTop />
+            <App />
         </ShopContextProvider>
       </UserContext>
     </AuthContext>
