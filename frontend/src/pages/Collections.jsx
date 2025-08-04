@@ -91,10 +91,10 @@ function Collections() {
     <div className='w-[99vw]  min-h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] flex items-start flex-col md:flex-row justify-start  pt-[70px] overflow-x-hidden z-[2] pb-[110px]'>
       <div className={`
       md:w-[30vw] lg:w-[20vw] w-full
-      md:min-h-[100vh] 
+      md:min-h-[100vh]
       ${showFilter ? "h-auto" : "h-[60px]"} 
       p-5
-      border-r border-gray-800  
+      border-r border-gray-800
       bg-black
       text-white
       lg:fixed
@@ -121,7 +121,7 @@ function Collections() {
     </span>
   </p>
 
-  {/* Category Card */}
+
   <div className={`
     mt-6 shadow-sm
     rounded-lg
@@ -174,11 +174,11 @@ function Collections() {
   </div>
 </div>
 
-      <div className='lg:pl-[20%] md:py-[10px] '>
-        <div className=' md:w-[80vw] w-[100vw]    flex  justify-between flex-col lg:flex-row lg:px-[50px] '>
+      <div className='lg:pl-[20%] md:py-[15px] '>
+        <div className=' md:w-[80vw] w-[60vw] flex justify-center flex-col lg:flex-row lg:px-[50px] items-center'>
             <Title text1={"ALL"} text2={"COLLECTIONS"}/>
 
-            <select name="" id="" className='bg-white text-black w-[60%] md:w-[200px] h-[50px] px-[10px]  rounded-lg hover:border-[#46d1f7] border-[2px]' onChange={(e)=>setSortType(e.target.value)}>
+            <select name="" id="" className='bg-white text-black w-[45%] md:w-[100px] md:[30%] mx-5 h-[30px] px-[10px]  rounded-lg hover:border-[#46d1f7] border-[2px] ' onChange={(e)=>setSortType(e.target.value)}>
                 <option value="relavent" className='w-[100%] h-[100%]'>Sort By: Relavent</option>
                 <option value="low-high" className='w-[100%] h-[100%]'>Sort By: Low to High</option>
                 <option value="high-low" className='w-[100%] h-[100%]'>Sort By: High to Low</option>

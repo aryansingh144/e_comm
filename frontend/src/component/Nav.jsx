@@ -53,7 +53,7 @@ function Nav() {
   return (
     <nav className="w-full fixed top-0 left-0 z-50 bg-white shadow">
       <div className="relative">
-        {/* Top Navbar */}
+
         <div className="w-full px-4 md:px-6 py-3 flex justify-between items-center border-b border-gray-200">
           {/* Logo */}
           <div
@@ -63,7 +63,7 @@ function Nav() {
             MERCAZO
           </div>
 
-          {/* Center - Search (Desktop) */}
+
           <div className="hidden md:flex items-center gap-2">
             <input
               type="text"
@@ -80,7 +80,7 @@ function Nav() {
             </button>
           </div>
 
-          {/* Right - Icons (Desktop) */}
+
           <div className="hidden md:flex items-center gap-5 text-sm text-gray-700 relative">
             <div className="relative">
               <FaRegUser
@@ -147,7 +147,7 @@ function Nav() {
             >
               <FaShoppingBag />
               {getCartCount() > 0 && (
-                <span className="absolute -top-2 -right-2 bg-black text-white text-xs px-[6px] rounded-full">
+                <span className="absolute -top-2 -right-3 bg-black text-white text-xs px-[4px] rounded-full">
                   {getCartCount()}
                 </span>
               )}
@@ -156,7 +156,7 @@ function Nav() {
 
           {/* Mobile - menu & cart */}
           <div className="md:hidden flex items-center gap-4">
-            {/* 🔹 Mobile Search Icon */}
+
             <IoSearchOutline
               onClick={() => setShowSearchMobile((prev) => !prev)}
               className="text-xl cursor-pointer"
@@ -179,7 +179,7 @@ function Nav() {
           </div>
         </div>
 
-        {/* 🔹 Mobile Search Bar (visible when toggled) */}
+
         {showSearchMobile && (
           <div className="md:hidden px-4 py-2 border-b bg-white shadow-sm">
             <input
@@ -196,7 +196,7 @@ function Nav() {
           </div>
         )}
 
-        {/* Desktop Navigation */}
+
         <div className="w-full bg-black text-white text-sm px-6 py-2 justify-center gap-4 tracking-wide hidden md:flex">
           <button
             onClick={() => navigate("/")}
@@ -227,7 +227,7 @@ function Nav() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+
         {showMobileMenu && (
           <div className="md:hidden w-full bg-black text-white text-sm flex flex-col px-6 py-4 gap-3 z-40">
             <button

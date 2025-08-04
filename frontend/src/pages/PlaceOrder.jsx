@@ -109,9 +109,6 @@ function PlaceOrder() {
 
         break;
 
-
-
-
         default:
         break;
 

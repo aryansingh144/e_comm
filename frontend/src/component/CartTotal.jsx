@@ -9,14 +9,14 @@ function CartTotal() {
 
   return (
     <div className="w-full lg:ml-[30px] text-white">
-      <div className="text-xl py-3">
+      <div className="text-xl py-3 text-left w-full">
         <Title text1="CART" text2="TOTALS" />
       </div>
 
-      <div className="flex flex-col gap-4 mt-4 text-sm p-6 border border-white/20 rounded-xl bg-[#0f0f0f] shadow-md shadow-black/50">
+      <div className="flex flex-col gap-4 mt-4 text-sm p-6 border border-white/20 rounded-xl bg-black shadow-md shadow-black/50">
         <Row label="Subtotal" value={`${currency} ${subtotal}.00`} />
         <Divider />
-        <Row label="Shipping Fee" value={`${currency} ${delivery_fee}`} />
+        <Row label="Shipping Fee" value={`${subtotal > 10000 ? 'Free' : `${currency} ${delivery_fee}`}`} />
         <Divider />
         <Row label="Total" value={`${currency} ${total}`} bold />
       </div>
