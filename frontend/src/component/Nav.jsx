@@ -117,7 +117,7 @@ function Nav() {
                         </li>
                         <li
                           onClick={() => {
-                            navigate("/orders");
+                            navigate("/order");
                             setShowProfile(false);
                           }}
                           className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
@@ -140,7 +140,7 @@ function Nav() {
               )}
             </div>
 
-            {/* Cart Icon */}
+
             <div
               className="relative cursor-pointer text-lg"
               onClick={() => navigate("/cart")}
@@ -154,7 +154,6 @@ function Nav() {
             </div>
           </div>
 
-          {/* Mobile - menu & cart */}
           <div className="md:hidden flex items-center gap-4">
 
             <IoSearchOutline
@@ -286,7 +285,7 @@ function Nav() {
           </div>
         )}
 
-        {/* Mobile Bottom Bar */}
+
         <div className="fixed bottom-0 left-0 w-full bg-black text-white flex justify-around items-center py-3 text-xs md:hidden z-40">
           <button onClick={() => navigate("/")}>
             <FaHome size={23} />

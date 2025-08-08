@@ -14,8 +14,10 @@ function LatestCollection() {
   return (
     <div>
       <div className='h-[8%] w-[100%] text-center md:mt-[50px]  '>
-        <Title text1={"LATEST"} text2={"COLLECTIONS"}/>
-        <p className='w-[100%] m-auto text-[13px] md:text-[20px] px-[10px] text-blue-100 '>Step Into Style – New Collection Dropping This Season!</p>
+        {/* <Title text1={"LATEST"} text2={"COLLECTIONS"}/> */}
+        <p className='text-[40px] font-bold text-white/80 '>LATEST COLLECTIONS</p>
+        <p className='text-[20px] text-white/60'>Discover the latest trends and styles in our new collection.</p>
+        
       </div>
       <div className='w-[100%] h-[50%] mt-[30px] flex items-center justify-center flex-wrap gap-[50px]'>
         {

@@ -8,7 +8,8 @@ function CartTotal() {
   const total = subtotal === 0 ? 0 : subtotal + delivery_fee;
 
   return (
-    <div className="w-full lg:ml-[30px] text-white">
+    // <div className=" rounded-2xl text-white">
+    <div className="w-full  text-white">
       <div className="text-xl py-3 text-left w-full">
         <Title text1="CART" text2="TOTALS" />
       </div>
@@ -21,6 +22,7 @@ function CartTotal() {
         <Row label="Total" value={`${currency} ${total}`} bold />
       </div>
     </div>
+    // </div>
   );
 }
 
