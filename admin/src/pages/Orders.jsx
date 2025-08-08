@@ -1,97 +1,134 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Nav from '../component/Nav'
 import Sidebar from '../component/Sidebar'
-import { useState } from 'react'
-import { useContext } from 'react'
 import { authDataContext } from '../context/AuthContext'
 import axios from 'axios'
-import { useEffect } from 'react'
-import { SiEbox } from "react-icons/si";
+import { SiEbox } from "react-icons/si"
 
 function Orders() {
+  const [orders, setOrders] = useState([])
+  const { serverUrl } = useContext(authDataContext)
 
-  let [orders,setOrders] = useState([])
-  let {serverUrl} = useContext(authDataContext)
-
-    const fetchAllOrders =async () => {
+  const fetchAllOrders = async () => {
     try {
-      const result = await axios.post(serverUrl + '/api/order/list' , {} ,{withCredentials:true})
+      const result = await axios.post(
+        `${serverUrl}/api/order/list`,
+        {},
+        { withCredentials: true }
+      )
       setOrders(result.data.reverse())
-      
     } catch (error) {
       console.log(error)
     }
-    
   }
-   const statusHandler = async (e , orderId) => {
-         try {
-          const result = await axios.post(serverUrl + '/api/order/status' , {orderId,status:e.target.value},{withCredentials:true})
-          if(result.data){
-            await fetchAllOrders()
-          }
-         } catch (error) {
-          console.log(error)
-          
-         }
+
+  const statusHandler = async (e, orderId) => {
+    try {
+      const result = await axios.post(
+        `${serverUrl}/api/order/status`,
+        { orderId, status: e.target.value },
+        { withCredentials: true }
+      )
+      if (result.data) fetchAllOrders()
+    } catch (error) {
+      console.log(error)
+    }
   }
-  useEffect(()=>{
+
+  useEffect(() => {
     fetchAllOrders()
-  },[])
+  }, [])
+
   return (
-    <div className='w-[99vw] min-h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] text-[white]'>
-      
-      <Nav/>
-      <div className='w-[100%] h-[100%] flex items-center lg:justify-start justify-center'>
-        <Sidebar/>
-        <div className='lg:w-[85%] md:w-[70%] h-[100%] lg:ml-[310px] md:ml-[250px] mt-[70px] flex flex-col gap-[30px] overflow-x-hidden py-[50px] ml-[100px]'>
-          <div className='w-[400px] h-[50px] text-[28px] md:text-[40px] mb-[20px] text-white'>All Orders List</div>
-          {
-           orders.map((order,index)=>(
-            <div key={index} className='w-[90%] h-[40%] bg-slate-600 rounded-xl flex lg:items-center items-start justify-between  flex-col lg:flex-row p-[10px] md:px-[20px]  gap-[20px]'>
-            <SiEbox  className='w-[60px] h-[60px] text-[black] p-[5px] rounded-lg bg-[white]'/>
+    <div className="w-full min-h-screen bg-gradient-to-l from-black to-neutral-900 text-white">
+      <Nav />
+      <div className="flex pt-[70px] pl-[18%]">
+        <Sidebar />
 
-            <div>
-              <div className='flex items-start justify-center flex-col gap-[5px] text-[16px] text-[#56dbfc]'>
-                {
-                  order.items.map((item,index)=>{
-                    if(index === order.items.length - 1){
-                       return <p key={index}>{item.name.toUpperCase()}  *  {item.quantity} <span>{item.size}</span></p>
+        <main className="flex-1 px-4 sm:px-6 md:px-8 py-10">
+          <h1 className="text-center text-[26px] sm:text-[32px] md:text-[40px] font-extrabold mb-10">
+            All Orders List
+          </h1>
 
-                    }else{
-                       return <p key={index}>{item.name.toUpperCase()}  *  {item.quantity} <span>{item.size}</span>,</p>
-
-                    }
-                  })
-                }
-              </div>
-
-              <div className='text-[15px] text-green-100'>
-                  <p>{order.address.firstName+" "+ order.address.lastName}</p>
-                  <p>{order.address.street + ", "}</p>
-                  <p>{order.address.city + ", " + order.address.state + ", " + order.address.country + ", " + order.address.pinCode}</p>
-                  <p>{order.address.phone}</p>
-                </div>
+          {orders.length === 0 ? (
+            <div className='text-center text-lg text-white/80'>
+              No orders found.
             </div>
-            <div className='text-[15px] text-green-100'>
-                  <p>Items : {order.items.length}</p>
-                  <p>Method : {order.paymentMethod}</p>
-                  <p>Payment : {order.payment ? 'Done' : 'Pending'}</p>
-                  <p>Date : {new Date(order.date).toLocaleDateString()}</p>
-                   <p className='text-[20px] text-[white]'> ₹ {order.amount}</p>
-                </div>
-                <select  value={order.status} className='px-[5px] py-[10px] bg-slate-500 rounded-lg border-[1px] border-[#96eef3]' onChange={(e)=>statusHandler(e,order._id)} >
-                  <option value="Order Placed">Order Placed</option>
-                  <option value="Packing">Packing</option>
-                  <option value="Shipped">Shipped</option>
-                  <option value="Out for delivery">Out for delivery</option>
-                  <option value="Delivered">Delivered</option>
-                </select>
-            </div>
-            
-           ))
+          ) : (
+            <div className='flex flex-col gap-6'>
+              {orders.map((order, index) => (
+                <div
+                  key={order._id || index}
+                  className='bg-white/90 text-black rounded-2xl shadow-lg border border-gray-300 p-5 md:p-8 flex flex-col gap-5 md:gap-6'
+                >
+                  {/* Top Section */}
+                  <div className='flex items-start sm:items-center gap-4'>
+                    <SiEbox className='w-[50px] h-[50px] text-[#222] bg-white rounded-lg shadow p-2' />
+                    <div className='flex-1'>
+                      <div className='text-blue-700 font-semibold text-sm sm:text-base flex flex-wrap gap-2'>
+                        {order.items.map((item, i) => (
+                          <span key={i}>
+                            {item.name.toUpperCase()}
+                            <span className='text-black/60 font-medium'>
+                              × {item.quantity} <span className='text-sm'>{item.size}</span>
+                            </span>
+                            {i < order.items.length - 1 && (
+                              <span className='mx-1 text-gray-500'>|</span>
+                            )}
+                          </span>
+                        ))}
+                      </div>
+                      <div className='text-[14px] sm:text-[15px] text-black/80 mt-2 leading-5'>
+                        <span className='font-bold text-green-700'>
+                          {order.address.firstName} {order.address.lastName}
+                        </span>
+                        <br />
+                        {order.address.street}, {order.address.city}, {order.address.state},{' '}
+                        {order.address.country}, {order.address.pinCode}
+                        <br />
+                        <span className='text-black/70 font-mono'>
+                          {order.address.phone}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
 
-          }
-        </div>
+                  {/* Order Info & Status */}
+                  <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-4'>
+                    <div className='text-sm text-black/90 font-semibold flex flex-col gap-1'>
+                      <p>Items: <span className='font-bold'>{order.items.length}</span></p>
+                      <p>Method: <span className='text-[#265aa6]'>{order.paymentMethod}</span></p>
+                      <p>
+                        Payment:
+                        <span className={order.payment ? 'text-green-700 ml-1' : 'text-red-500 ml-1'}>
+                          {order.payment ? 'Done' : 'Pending'}
+                        </span>
+                      </p>
+                      <p>Date: {new Date(order.date).toLocaleDateString()}</p>
+                      <p className='text-[18px] font-bold text-black mt-1'>
+                        ₹ {order.amount}
+                      </p>
+                    </div>
+
+                    <div>
+                      <select
+                        value={order.status}
+                        className='px-4 py-3 bg-white border border-black/20 hover:border-blue-500 transition rounded-lg text-black font-bold shadow-md'
+                        onChange={(e) => statusHandler(e, order._id)}
+                      >
+                        <option value="Order Placed">Order Placed</option>
+                        <option value="Packing">Packing</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Out for delivery">Out for delivery</option>
+                        <option value="Delivered">Delivered</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </main>
       </div>
     </div>
   )

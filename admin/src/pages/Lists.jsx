@@ -5,78 +5,91 @@ import { authDataContext } from '../context/AuthContext'
 import axios from 'axios'
 
 function Lists() {
-  let [list ,setList] = useState([])
-  let {serverUrl} = useContext(authDataContext)
-
+  const [list, setList] = useState([])
+  const { serverUrl } = useContext(authDataContext)
 
   const fetchList = async () => {
     try {
-      let result = await axios.get(serverUrl + "/api/product/list" )
+      let result = await axios.get(`${serverUrl}/api/product/list`)
       setList(result.data)
-      console.log(result.data)
     } catch (error) {
       console.log(error)
     }
-    
   }
 
   const removeList = async (id) => {
-
     try {
-      let result = await axios.post(`${serverUrl}/api/product/remove/${id}`,{},{withCredentials:true})
-
-      if(result.data){
-        fetchList()
-      }
-      else{
-        console.log("Failed to remove Product")
-      }
+      let result = await axios.post(
+        `${serverUrl}/api/product/remove/${id}`,
+        {},
+        { withCredentials: true }
+      )
+      if (result.data) fetchList()
+      else console.log('Failed to remove Product')
     } catch (error) {
       console.log(error)
     }
-    
   }
 
-  useEffect(()=>{
-   fetchList()
-  },[])
+  useEffect(() => {
+    fetchList()
+  }, [])
+
   return (
-    <div className='w-[100vw] min-h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] text-[white]'>
-      <Nav/>
-      <div className='w-[100%] h-[100%] flex items-center justify-start'>
-        <Sidebar/>
+    <div className="w-full min-h-screen bg-gradient-to-l from-black to-neutral-900 text-black">
+      <Nav />
+      <div className="flex pt-[70px] pl-[18%]">
+        <Sidebar />
 
-        <div className='w-[82%] h-[100%] lg:ml-[320px] md:ml-[230px] mt-[70px] flex flex-col gap-[30px] overflow-x-hidden py-[50px] ml-[100px]'>
-          <div className='w-[400px] h-[50px] text-[28px] md:text-[40px] mb-[20px] text-white'>All Listed Products</div>
+        <main className="flex-1 px-4 sm:px-6 md:px-8 py-10">
+          <h1 className="text-[26px] sm:text-[32px] md:text-[40px] font-extrabold text-center text-white mb-8">
+            All Listed Products
+          </h1>
+
+          {list.length > 0 ? (
+            <div className="flex flex-col gap-6">
+              {list.map((item, index) => (
+                <div
+                  key={item._id || index}
+                  className="bg-white/90 text-black rounded-2xl shadow-lg border border-gray-300 flex flex-row items-center justify-between gap-4 p-4 md:p-6"
+                >
+
+                  <img
+                    src={item.image1}
+                    className="w-20 h-20 md:w-28 md:h-28 object-cover rounded-lg border border-gray-200 shadow"
+                    alt={item.name}
+                  />
 
 
-          {
-            list?.length > 0 ? (
-              list.map((item,index)=>(
-                <div className='w-[90%] md:h-[120px] h-[90px] bg-slate-600 rounded-xl flex items-center justify-start gap-[5px] md:gap-[30px] p-[10px] md:px-[30px]' key={index}>
-                  <img src={item.image1} className='w-[30%] md:w-[120px] h-[90%] rounded-lg' alt="" />
-                  <div className='w-[90%] h-[80%] flex flex-col items-start justify-center gap-[2px]'>
-
-                    <div className='w-[100%] md:text-[20px] text-[15px] text-[#bef0f3]'>{item.name}</div>
-                     <div className='md:text-[17px] text-[15px] text-[#bef3da]'>{item.category}</div>
-                  <div className='md:text-[17px] text-[15px] text-[#bef3da]'>₹{item.price}</div>
-
+                  <div className="flex-1 min-w-0">
+                    <div className="text-base md:text-lg font-bold text-blue-900 truncate">
+                      {item.name}
+                    </div>
+                    <div className="text-sm text-green-700 font-semibold">
+                      {item.category}
+                    </div>
+                    <div className="text-sm md:text-base text-[#111] font-bold">
+                      ₹{item.price}
+                    </div>
                   </div>
-                  <div className='w-[10%] h-[100%] bg-transparent flex items-center justify-center'>
-                    <span className='w-[35px] h-[30%] flex items-center justify-center rounded-md md:hover:bg-red-300 md:hover:text-black cursor-pointer' onClick={()=>removeList(item._id)}>X</span>
-                  </div>
-                 
 
+
+                  <button
+                    className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-md bg-red-600 hover:bg-red-800 text-white text-xl font-bold shadow-md transition"
+                    title="Remove product"
+                    onClick={() => removeList(item._id)}
+                  >
+                    ×
+                  </button>
                 </div>
-              ))
-            )
-
-            : (
-              <div className='text-white text-lg'>No products available.</div>
-            )
-          }
-        </div>
-
+              ))}
+            </div>
+          ) : (
+            <div className="text-white text-lg text-center my-12">
+              No products available.
+            </div>
+          )}
+        </main>
       </div>
     </div>
   )
