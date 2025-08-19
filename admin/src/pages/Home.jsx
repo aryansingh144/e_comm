@@ -26,7 +26,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="w-[100vw] h-[100vh] min-h-screen bg-gradient-to-br from-[#181e24] via-[#1a2329] to-[#0a0a0aaa] text-white relative">
+    <div className="w-[100vw] h-[100vh] min-h-screen bg-gradient-to-br from-[#181e24] via-[#0b0f12] to-[#0a0606aa] text-white relative">
       <Nav />
       <Sidebar />
 
@@ -47,7 +47,7 @@ function Home() {
               hover:scale-[1.04] hover:shadow-2xl
               ">
             <span className="opacity-90">Total No. of Products</span>
-            <span className="px-[26px] py-[10px] bg-black/30 rounded-lg border border-white/30 text-[32px] font-extrabold shadow backdrop-blur-md">
+            <span className="px-[26px] py-[10px] bg-black rounded-lg border border-white/30 text-[32px] font-extrabold shadow-2xl backdrop-blur-3xl">
               {totalProducts}
             </span>
           </div>
@@ -62,7 +62,7 @@ function Home() {
               hover:scale-[1.04] hover:shadow-2xl
               ">
             <span className="opacity-90">Total No. of Orders</span>
-            <span className="px-[26px] py-[10px] bg-black/30 rounded-lg border border-white/30 text-[32px] font-extrabold shadow backdrop-blur-md">
+            <span className="px-[26px] py-[10px] bg-black rounded-lg border border-white/30 text-[32px] font-extrabold shadow-2xl backdrop-blur-3xl">
               {totalOrders}
             </span>
           </div>
