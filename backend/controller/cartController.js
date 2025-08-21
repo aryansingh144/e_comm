@@ -7,12 +7,12 @@ export const addToCart = async (req,res) => {
 
     const userData = await User.findById(req.userId);
 
-    // Check if user exists
+
     if (!userData) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Ensure cartData is initialized
+
     let cartData = userData.cartData || {};
 
     if (cartData[itemId]) {
@@ -58,9 +58,6 @@ export const UpdateCart = async (req,res) => {
          console.log(error)
     return res.status(500).json({message:"updateCart error"})
     }
-    
-    
-
     
 }
 
