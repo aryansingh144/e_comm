@@ -45,7 +45,7 @@ function Add() {
         { withCredentials: true }
       );
 
-      toast.success("ADD Product Successfully");
+      toast.success("Product added Successfully");
       setLoading(false);
 
       if (result.data) {
@@ -63,7 +63,7 @@ function Add() {
       }
     } catch (error) {
       setLoading(false);
-      toast.error("Add Product Failed");
+      toast.error("Not Able to Add Product, Failed");
     }
   };
 

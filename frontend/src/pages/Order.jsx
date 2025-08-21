@@ -71,7 +71,7 @@ function Order() {
                 <span className="text-gray-300">Status:
                   <span className={`ml-2 text-sm font-bold px-2 py-1 rounded-full
                     ${item.status === "Delivered"
-                    ? "bg-green-500/90 text-white"
+                    ? "bg-black text-white"
                     : item.status === "Pending"
                       ? "bg-yellow-400/70 text-black"
                       : "bg-blue-400/80 text-black"

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import ai from "../assets/ai.png"
+import ai from "../assets/ai.svg"
 import { shopDataContext } from '../context/ShopContext'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -77,8 +77,8 @@ window.speechSynthesis.speak(utterence)
     openingSound.play()
     setActiveAi(true)
     }}>
-      <img src={ai} alt="" className={`w-[100px] cursor-pointer ${activeAi ? 'translate-x-[10%] translate-y-[-10%] scale-125 ' : 'translate-x-[0] translate-y-[0] scale-100'} transition-transform` } style={{
-        filter: ` ${activeAi?"drop-shadow(0px 0px 30px #00d2fc)":"drop-shadow(0px 0px 20px black)"}`
+      <img src={ai} alt="" className={`bg-amber-50 w-[100px] rounded-4xl cursor-pointer ${activeAi ? 'translate-x-[10%] translate-y-[-10%] scale-125 ' : 'translate-x-[0] translate-y-[0] scale-100'} transition-transform` } style={{
+        filter: ` ${activeAi?"drop-shadow(0px 0px 30px white)":"drop-shadow(0px 0px 20px black)"}`
       }}/>
     </div>
   )
