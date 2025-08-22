@@ -32,13 +32,12 @@ jobs:
         run: npm install
 
       - name: Create backend .env file
-        working-directory: ./backend
+        working-directory: ./server
         run: |
           cat <<'EOF' > .env
-          VAR1=${{ secrets.VAR1 }}
-          VAR2=${{ secrets.VAR2 }}
-          VAR3=${{ secrets.VAR3 }}
+          ${{ secrets.PROD_BACKEND_ENV }}
           EOF
+
 
       - name: Start backend with PM2
         working-directory: ./backend
