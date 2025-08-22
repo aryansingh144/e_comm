@@ -32,7 +32,7 @@ jobs:
         run: npm install
 
       - name: Create backend .env file
-        working-directory: ./server
+        working-directory: ./backend
         run: |
           cat <<'EOF' > .env
           ${{ secrets.PROD_BACKEND_ENV }}
