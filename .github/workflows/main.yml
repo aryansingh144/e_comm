@@ -42,7 +42,7 @@ jobs:
       - name: Start backend with PM2
         working-directory: ./backend
         run: |
-          pm2 restart e_comm_backend || pm2 start index.js --name e_comm_backend
+          /home/ubuntu/.nvm/versions/node/v22.18.0/bin/pm2 restart e_comm_backend || /home/ubuntu/.nvm/versions/node/v22.18.0/bin/pm2 start index.js --name e_comm_backend
 
 # ================= Frontend =================
       - name: Clean npm cache & remove existing dependencies
