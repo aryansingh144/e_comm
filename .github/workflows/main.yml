@@ -25,6 +25,7 @@ jobs:
           cache-dependency-path: |
             backend/package-lock.json
             frontend/package-lock.json
+            admin/package-lock.json
 
 # ================= Backend =================
       - name: Install backend dependencies
@@ -38,14 +39,13 @@ jobs:
           ${{ secrets.PROD_BACKEND_ENV }}
           EOF
 
-
       - name: Start backend with PM2
         working-directory: ./backend
         run: |
           /home/ubuntu/.nvm/versions/node/v22.18.0/bin/pm2 restart e_comm_backend || /home/ubuntu/.nvm/versions/node/v22.18.0/bin/pm2 start index.js --name e_comm_backend
 
 # ================= Frontend =================
-      - name: Clean npm cache & remove existing dependencies
+      - name: Clean npm cache & remove existing dependencies (Frontend)
         working-directory: ./frontend
         run: |
           rm -rf node_modules package-lock.json
@@ -70,3 +70,31 @@ jobs:
         run: |
           sudo rm -rf /var/www/html/*
           sudo cp -r ./frontend/dist/* /var/www/html/
+
+# ================= Admin =================
+      - name: Clean npm cache & remove existing dependencies (Admin)
+        working-directory: ./admin
+        run: |
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+
+      - name: Install admin dependencies
+        working-directory: ./admin
+        run: npm install
+
+      - name: Create admin .env file
+        working-directory: ./admin
+        run: |
+          cat <<'EOF' > .env
+          ${{ secrets.PROD_ADMIN_ENV }}
+          EOF
+
+      - name: Build admin
+        working-directory: ./admin
+        run: npm run build
+
+      - name: Deploy admin to Nginx
+        run: |
+          sudo rm -rf /var/www/html/admin/*
+          sudo mkdir -p /var/www/html/admin
+          sudo cp -r ./admin/dist/* /var/www/html/admin/
