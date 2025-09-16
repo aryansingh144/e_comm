@@ -3,7 +3,7 @@ import Logo from "../assets/logo.svg";
 import { useNavigate } from 'react-router-dom';
 import google from '../assets/google.png';
 import { IoEyeOutline, IoEye } from "react-icons/io5";
-import { AuthDataContext } from '../context/authContext';
+import { AuthDataContext } from '../context/AuthContext';
 import axios from 'axios';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../utils/Firebase';

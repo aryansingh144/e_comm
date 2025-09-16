@@ -12,14 +12,14 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { UserDataContext } from "../context/UserContext";
-import { AuthDataContext } from "../context/authContext";
+import { AuthDataContext } from "../context/AuthContext";
 import { shopDataContext } from "../context/ShopContext";
 
 function Nav() {
   const [showProfile, setShowProfile] = useState(false);
   const [showSearchMobile, setShowSearchMobile] = useState(false); // 🔹 New
-  const { getCurrentUser, userData } = useContext(userDataContext);
-  const { serverUrl } = useContext(authDataContext);
+  const { getCurrentUser, userData } = useContext(UserDataContext);
+  const { serverUrl } = useContext(AuthDataContext);
   const { getCartCount, search, setSearch } = useContext(shopDataContext);
   const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);

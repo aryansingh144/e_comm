@@ -3,7 +3,7 @@ import Title from "../component/Title";
 import CartTotal from "../component/CartTotal";
 import razorpay from "../assets/Razorpay.jpg";
 import { shopDataContext } from "../context/ShopContext";
-import { AuthDataContext } from "../context/authContext";
+import { AuthDataContext } from "../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

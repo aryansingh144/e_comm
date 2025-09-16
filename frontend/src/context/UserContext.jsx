@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { AuthDataContext } from './authContext.jsx'
+import { AuthDataContext } from './AuthContext.jsx'
 
 import axios from 'axios'
 
