@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { authDataContext } from './authContext';
+
+import { AuthDataContext } from './authContext.jsx';
 import axios from 'axios';
-import { userDataContext } from './UserContext';
+import { UserDataContext } from './UserContext.jsx';
 import { toast } from 'react-toastify';
 
 export const shopDataContext = createContext();
@@ -9,9 +10,9 @@ export const shopDataContext = createContext();
 export const ShopContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
-  const { userData } = useContext(userDataContext);
+  const { userData } = useContext(UserDataContext);
   const [showSearch, setShowSearch] = useState(false);
-  const { serverUrl } = useContext(authDataContext);
+  const { serverUrl } = useContext(AuthDataContext);
   const [cartItem, setCartItem] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(""); 

@@ -3,11 +3,11 @@ import Logo from "../assets/logo.svg";
 import { useNavigate } from 'react-router-dom';
 import google from '../assets/google.png';
 import { IoEyeOutline, IoEye } from "react-icons/io5";
-import { authDataContext } from '../context/authContext';
+import { AuthDataContext } from '../context/authContext';
 import axios from 'axios';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../utils/Firebase';
-import { userDataContext } from '../context/UserContext';
+import { UserDataContext } from '../context/UserContext';
 import Loading from '../component/Loading';
 import { toast } from 'react-toastify';
 

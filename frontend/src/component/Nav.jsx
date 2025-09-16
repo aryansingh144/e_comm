@@ -11,8 +11,8 @@ import {
 } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { userDataContext } from "../context/UserContext";
-import { authDataContext } from "../context/authContext";
+import { UserDataContext } from "../context/UserContext";
+import { AuthDataContext } from "../context/authContext";
 import { shopDataContext } from "../context/ShopContext";
 
 function Nav() {

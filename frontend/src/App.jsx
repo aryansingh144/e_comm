@@ -95,7 +95,7 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Registration from './pages/Registration';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import { userDataContext } from './context/UserContext';
+import { UserDataContext } from './context/UserContext';
 import About from './pages/About';
 import Collections from './pages/Collections';
 import Product from './pages/Product';
@@ -110,7 +110,7 @@ import Ai from './component/Ai';
 import LayoutWithNav from './component/LayoutWithNav';
 
 function App() {
-  const { userData } = useContext(userDataContext);
+  const { userData } = useContext(UserDataContext);
   const location = useLocation();
 
   return (
