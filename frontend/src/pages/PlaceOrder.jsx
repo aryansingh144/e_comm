@@ -14,7 +14,7 @@ function PlaceOrder() {
   const navigate = useNavigate();
   const { cartItem, setCartItem, getCartAmount, delivery_fee, products } =
     useContext(shopDataContext);
-  const { serverUrl } = useContext(authDataContext);
+  const { serverUrl } = useContext(AuthDataContext);
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
